@@ -1,0 +1,16 @@
+on:
+  # Triggered daily or manually
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  mainnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: curl "https://index.oasislabs.com/v1/spec/v1.yaml" --fail -o v1.yaml
+      - run: git add .
+      - run: curl "https://testnet-index.oasislabs.com/v1/spec/v1.yaml" --fail -o v1.yaml
+      - name: Fail if anything changed
+        run: "git diff --exit-code"

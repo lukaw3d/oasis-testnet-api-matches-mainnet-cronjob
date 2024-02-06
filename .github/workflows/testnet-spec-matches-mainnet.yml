@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: curl "https://index.oasislabs.com/v1/spec/v1.yaml" --fail -o v1.yaml
+      - run: curl "https://nexus.oasis.io/v1/spec/v1.yaml" --fail -o v1.yaml
       - run: git add .
-      - run: curl "https://testnet-index.oasislabs.com/v1/spec/v1.yaml" --fail -o v1.yaml
+      - run: curl "https://testnet.nexus.oasis.io/v1/spec/v1.yaml" --fail -o v1.yaml
       - name: Fail if anything changed
         run: "git diff --exit-code"

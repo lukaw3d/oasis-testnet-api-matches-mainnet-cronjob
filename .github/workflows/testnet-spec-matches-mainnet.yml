@@ -14,3 +14,12 @@ jobs:
       - run: curl "https://testnet.nexus.oasis.io/v1/spec/v1.yaml" --fail -o v1.yaml
       - name: Fail if anything changed
         run: "git diff --exit-code"
+  staging-mainnet-matches-testnet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: curl "https://nexus.stg.oasis.io/v1/spec/v1.yaml" --fail -o v1.yaml
+      - run: git add .
+      - run: curl "https://testnet.nexus.stg.oasis.io/v1/spec/v1.yaml" --fail -o v1.yaml
+      - name: Fail if anything changed
+        run: "git diff --exit-code"
